@@ -61,9 +61,9 @@ def txt2ppt(lines):
         s.Shapes(2).TextFrame.TextRange.Text = str(i)
         sleep(1.)
 
-    pres.SlideShowSettings.ShowType = win32.constants.ppShowType-Speaker
+    pres.SlideShowSettings.ShowType = 1 # The constant does not exist. Use number instead. 'win32.constants.ShowType-Speaker'    # change 'ppShowType-Speaker' to 'ShowType-Speaker'
     ss = pres.SlideShowSettings.Run()
-    pres.ApplyTemplate(r'c:')       # replace with your own template here
+    # pres.ApplyTemplate(r'c:')       # replace with your own template here
     s.Shapes(1).TextFrame.TextRange.Text = 'FINIS'
     s.Shapes(2).TextFrame.TextRange.Text = ''
 
@@ -72,8 +72,8 @@ def _start(ev=None):
     try:
         f = open(fn, 'U')
     except IOError:         # SyntaxError: invalid syntax
-        from cStringIO import cStringIO     # Change 'IOError, e' to 'IOError'
-        f = StringIO(DEMO)
+        import io #from cStringIO import StringIO     # use 'io.StringIO' instead in Python 3.x
+        f = io.StringIO(DEMO)
         en.delete(0, 'end')
         if fn.lower() == 'demo':
             en.insert(0, fn)
@@ -98,3 +98,8 @@ if __name__ == '__main__':
         command=tk.quit, fg='white', bg='red')
     quit.pack(fill='x', expand=True)
     tk.mainloop()
+
+# About 'cStringIO'
+# The StringIO and cStringIO modules are gone. Instead, 
+# import the io module and use io.StringIO or io.
+# BytesIO for text and data respectively.
