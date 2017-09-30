@@ -1,3 +1,5 @@
+#
+
 from tkinter import Tk, Label, Entry, Button
 from time import sleep
 import win32com.client as win32
@@ -19,7 +21,8 @@ slide 2 title
 '''
 
 def txt2ppt(lines):
-    ppoint = win32.gencache.EnsureDispatch('PowerPoint.Application')
+    ppoint = win32.gencache.EnsureDispatch(
+        'PowerPoint.Application')
     pres = ppoint.Presentations.Add()
     ppoint.Visible = True
     sleep(2)
@@ -60,20 +63,16 @@ def txt2ppt(lines):
 
     pres.SlideShowSettings.ShowType = win32.constants.ppShowType-Speaker
     ss = pres.SlideShowSettings.Run()
-    # replace with your own template here
-    pres.ApplyTemplate(r'c:')
+    pres.ApplyTemplate(r'c:')       # replace with your own template here
     s.Shapes(1).TextFrame.TextRange.Text = 'FINIS'
     s.Shapes(2).TextFrame.TextRange.Text = ''
 
 def _start(ev=None):
-    # what does 'en' mean here ?
-    fn = en.get().strip()
+    fn = en.get().strip()   # what does 'en' mean here ?
     try:
         f = open(fn, 'U')
-    # SyntaxError: invalid syntax
-    # Change 'IOError, e' to 'IOError'
-    except IOError:
-        from cStringIO import cStringIO
+    except IOError:         # SyntaxError: invalid syntax
+        from cStringIO import cStringIO     # Change 'IOError, e' to 'IOError'
         f = StringIO(DEMO)
         en.delete(0, 'end')
         if fn.lower() == 'demo':
