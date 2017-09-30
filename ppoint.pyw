@@ -20,14 +20,20 @@ def ppoint():
     # TypeError: 'Shapes' object does not support indexing
     # API chagned. From 'Shapes[0]' to 'Shapes(1)'
     # the index used to start from 0, now it starts from 1
-    sla = s1.Shapes(1).TextFrame.TextRange
-    sla.Text = 'Python-to-%s Demo' % app
+    s1a = s1.Shapes(1).TextFrame.TextRange
+    s1a.Text = 'Python-to-%s Demo' % app
     sleep(1)
-    slb = s1.Shapes(2).TextFrame.TextRange
+    s1b = s1.Shapes(2).TextFrame.TextRange
     for i in RANGE:
-        slb.InsertAfter("Line %d\r\n" %i)
+        s1b.InsertAfter("Line %d\r\n" %i)
         sleep(1)
-    slb.InsertAfter("\r\nTh-th-th-that's all folks!")
+    s1b.InsertAfter("\r\nTh-th-th-that's all folks!")
+
+    s2 = pres.Slides.Add(2, win32.constants.ppLayoutText)
+    s2a = s2.Shapes(1).TextFrame.TextRange
+    s2a.Text = 'Hello'
+
+    s1a.Text = 'Changed'
 
     warn(app)
     pres.Close()
