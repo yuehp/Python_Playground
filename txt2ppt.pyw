@@ -63,7 +63,7 @@ def txt2ppt(lines):
 
     pres.SlideShowSettings.ShowType = 1 # The constant does not exist. Use number instead. 'win32.constants.ShowType-Speaker'    # change 'ppShowType-Speaker' to 'ShowType-Speaker'
     ss = pres.SlideShowSettings.Run()
-    # pres.ApplyTemplate(r'c:')       # replace with your own template here
+    pres.ApplyTemplate(r'd:\image.potx')       # replace with your own template here
     s.Shapes(1).TextFrame.TextRange.Text = 'FINIS'
     s.Shapes(2).TextFrame.TextRange.Text = ''
 
